@@ -1,0 +1,26 @@
+extends layout
+
+block content
+	.jumbotron
+		h1= title
+		p A web app to track your money 
+		br
+		br
+		br
+		if (!user)
+			form(method="GET" action="/register")
+				button.btn Register Now
+		br
+		form(method="GET" action="/userlist")
+			button.btn Show Users
+		br
+		br
+		h3 Web App in CoNstRUctiOn ...
+		h4 Designing not done ;)
+		h5 Launching Sooooon
+		br
+		ul.list-group <strong>Request Take Complete :)</strong>
+			li Register yourself in a minute
+			li Check out other registered users
+			li Make your money requests to them
+			li You can accept or reject a request

@@ -1,0 +1,64 @@
+extends layout
+
+block content
+	h2 Profile
+	h3 #{userl.name} @ #{userl.username}
+	div.wrapper
+		.jumbotron
+			h5 Room - #{userl.room}
+			h5 Branch - #{userl.branch}
+			h4 Debt - INR #{userl.debt}
+		if user
+			if user.username!=userl.username
+				.jumbotron
+					h3 Request #{userl.name}
+					br
+					form(method='POST' action='/request/'+userl._id)
+						#form-group
+							label Subject  :
+							input.form-control(name="subject" ,type="text")
+						#form-group
+							label Amount (INR) :
+							input.form-control(name="amount" ,type="number")
+						#form-group
+							label Payment Method :
+							.radio-inline
+								input.form-control(name="cash" ,type="radio")
+								input.form-control(name="paytm" ,type="radio")
+						br
+						input.button.btn(type='submit' value='Request')
+		.jumbotron
+			h4 Notifs
+			ul.list-group
+				each notif in r_notifs
+					li.list-group-item
+						|#{notif.applicant.name} requested <strong>INR #{notif.amount}</strong> from #{notif.recipient.name} for #{notif.subject}
+						if user
+							if (user.username==userl.username)
+								if !notif.accept && !notif.reject
+									a.button.btn(href='/user/accept/'+notif._id) Accept
+									a.button.btn(href='/user/reject/'+notif._id) Reject
+								if notif.accept && !notif.done
+									a.button.btn(href='#') Complete This Transaction
+								if notif.accept && notif.done
+									a.button.btn() Completed
+								if notif.reject
+									a.button.btn() Rejected
+		if user
+			if (user.username==userl.username)
+				.jumbotron
+					h4 Your Pending Requests
+					ul.list-group
+						each notif in a_notifs
+							if notif.accept && !notif.reject && !notif.done
+								li.list-group-item
+									|#{notif.recipient.name} <strong>accepted</strong> your request of <strong>INR #{notif.amount}</strong> for #{notif.subject}
+									a.button.btn(href='/user/accept/done/'+notif._id) Payment Recieved
+							if !notif.accept && notif.reject
+								li.list-group-item
+									|#{notif.recipient.name} <strong>rejected</strong> your request of <strong>INR #{notif.amount}</strong> for #{notif.subject}
+							if !notif.accept && !notif.reject
+								li.list-group-item
+									|You requested #{notif.recipient.name} , <strong>INR #{notif.amount}</strong> for #{notif.subject}
+
+								

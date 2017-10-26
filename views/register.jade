@@ -1,0 +1,29 @@
+extends layout
+block content
+	.jumbotron
+		h3 Register as new user
+		form(method="POST" action="/adduser")
+			#form-group
+				label Name*  :
+				input.form-control(name="name" ,type="text")
+			#form-group
+				label Username*  :
+				input.form-control(name="username" ,type="text")
+			#form-group
+				label Password  :
+				input.form-control(name="password" ,type="password")
+			#form-group
+				label Confirm Password  :
+				input.form-control(name="password2" ,type="password")
+			#form-group
+				label Room*  :
+				input.form-control(name="room" ,type="text")
+			#form-group
+				label Branch  :
+				input.form-control(name="branch" ,type="text")
+
+			br
+			br
+
+			input.button.btn(type="submit" value="Register")
+

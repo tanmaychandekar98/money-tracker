@@ -1,0 +1,14 @@
+extends layout
+
+block content
+	br
+	br
+	.jumbotron
+		h2 Registered users
+		ul.list-group
+		each u in users
+			li.list-group-item
+				span #{u.name}  
+				if(u.username)
+					a(href='/user/'+u._id).
+						@#{u.username}
