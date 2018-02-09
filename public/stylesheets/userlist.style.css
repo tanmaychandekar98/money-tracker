@@ -1,0 +1,14 @@
+.wrap2{
+	text-align: center;
+	display: flex;
+	flex-wrap: wrap;
+}
+.wrap2  .card1 {
+	font-size:20px;
+	display: flex;
+	flex-direction: column;
+}
+.wrap2  .card1 a {
+	background-color: lightgray;
+	border-radius: 10px;
+}

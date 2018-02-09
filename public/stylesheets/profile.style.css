@@ -1,0 +1,38 @@
+.card1 {
+	height: 250px;
+	width: 350px;
+	margin: 15px;
+	font-size: 30px;
+	line-height: 100px;
+	box-shadow: 4px 5px gray;
+
+}
+
+.list1 {
+	display: flex;
+}
+
+.card1  .button {
+	margin: 20px;
+	margin-top: -20px;
+	background-color: lightgray;
+	color: white;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.card1 .line {
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	border-bottom: 1px solid gray;
+}
+
+.card1 .line2 {
+	position: absolute;
+	bottom: 0px;
+	left: 10px;
+	right: 10px;
+	text-align: center;
+	padding: 20px;
+	border-radius: 10px;
+}

@@ -14,13 +14,13 @@ block content
 					h3 Request #{userl.name}
 					br
 					form(method='POST' action='/request/'+userl._id)
-						#form-group
+						#form-group.wrap3
 							label Subject  :
-							input.form-control(name="subject" ,type="text")
-						#form-group
+							input.input-group.input1(name="subject" ,type="text")
+						#form-group.wrap3
 							label Amount (INR) :
-							input.form-control(name="amount" ,type="number")
-						#form-group
+							input.input-group.input1(name="amount" ,type="number")
+						//#form-group
 							label Payment Method :
 							.radio-inline
 								input.form-control(name="cash" ,type="radio")
@@ -28,37 +28,49 @@ block content
 						br
 						input.button.btn(type='submit' value='Request')
 		.jumbotron
-			h4 Notifs
-			ul.list-group
+			h2 Notifs
+			ul.list-group.list1
 				each notif in r_notifs
-					li.list-group-item
-						|#{notif.applicant.name} requested <strong>INR #{notif.amount}</strong> from #{notif.recipient.name} for #{notif.subject}
-						if user
-							if (user.username==userl.username)
-								if !notif.accept && !notif.reject
-									a.button.btn(href='/user/accept/'+notif._id) Accept
-									a.button.btn(href='/user/reject/'+notif._id) Reject
-								if notif.accept && !notif.done
-									a.button.btn(href='#') Complete This Transaction
-								if notif.accept && notif.done
-									a.button.btn() Completed
-								if notif.reject
-									a.button.btn() Rejected
+					li.list-group-item.card1
+						.lh
+							h3 Name : #{notif.applicant.name}
+							h4 Request : <strong>INR #{notif.amount}</strong> 
+							h4.line Subject : #{notif.subject}
+							if user
+								if (user.username==userl.username)
+									if !notif.accept && !notif.reject
+										a.button.btn(href='/user/accept/'+notif._id) Accept
+										a.button.btn(href='/user/reject/'+notif._id) Reject
+									if notif.accept && !notif.done
+										a.button.btn() Complete This Transaction
+									if notif.accept && notif.done
+										a.button.btn() Completed
+									if notif.reject
+										a.button.btn() Rejected
 		if user
 			if (user.username==userl.username)
 				.jumbotron
-					h4 Your Pending Requests
-					ul.list-group
+					h2 Your Pending Requests
+					ul.list-group.list1
 						each notif in a_notifs
 							if notif.accept && !notif.reject && !notif.done
-								li.list-group-item
-									|#{notif.recipient.name} <strong>accepted</strong> your request of <strong>INR #{notif.amount}</strong> for #{notif.subject}
+								li.list-group-item.card1
+									h3 Request to : #{notif.recipient.name}
+									h4 Amount : <strong>INR #{notif.amount}</strong>
+									h4 Subject : #{notif.subject}
+									h4.line2(style="background-color:lightgreen;") Accepted
 									a.button.btn(href='/user/accept/done/'+notif._id) Payment Recieved
 							if !notif.accept && notif.reject
-								li.list-group-item
-									|#{notif.recipient.name} <strong>rejected</strong> your request of <strong>INR #{notif.amount}</strong> for #{notif.subject}
+								li.list-group-item.card1
+									h3 Request to : #{notif.recipient.name}
+									h4 Amount : <strong>INR #{notif.amount}</strong>
+									h4 Subject : #{notif.subject}
+									h4.line2(style="background-color:pink;") Rejected
 							if !notif.accept && !notif.reject
-								li.list-group-item
-									|You requested #{notif.recipient.name} , <strong>INR #{notif.amount}</strong> for #{notif.subject}
+								li.list-group-item.card1
+									h3 Request to : #{notif.recipient.name}
+									h4 Amount : <strong>INR #{notif.amount}</strong>
+									h4 Subject : #{notif.subject}
+									h4.line2(style="background-color:lightblue;") Pending
 
 								

@@ -3,7 +3,11 @@ html
 	head
 		title= title
 		link(rel='stylesheet', href='/stylesheets/style.css')
+		link(rel='stylesheet' href='/stylesheets/profile.style.css')
+		link(rel='stylesheet' href='/stylesheets/index.style.css')
+		link(rel='stylesheet' href='/stylesheets/userlist.style.css')
 		link(rel='stylesheet', href='/bower/bootstrap/dist/css/bootstrap.css')
+		link(rel = 'stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css')
 	body
 		nav.navbar.navbar-inverse.navbar-fixed-top
 			.container
@@ -29,12 +33,17 @@ html
 								a(href='/register') Register 
 							li
 								a(href='/login') Login
-		.container
+		.container(style="width:100%;")
 			block content
 			br
 			hr
-			footer
-				p Copyright &copy; tanmaychandekar98
+		footer
+			p Copyright &copy; tanmaychandekar98
+			i.fa.fa-facebook
+			| 
+			i.fa.fa-linkedin
+			| 
+			i.fa.fa-twitter
 
 	script(type="text/javascript" src='/bower/jquery/dist/jquery.min.js')
 	script(type="text/javascript" src='/bower/bootstrap/dist/js/bootstrap.min.js')

@@ -3,12 +3,14 @@ extends layout
 block content
 	br
 	br
-	.jumbotron
-		h2 Registered users
+	h2 Registered users
+	.jumbotron.wrap2
 		ul.list-group
 		each u in users
-			li.list-group-item
-				span #{u.name}  
-				if(u.username)
-					a(href='/user/'+u._id).
-						@#{u.username}
+			if !user || user.username!=u.username
+				li.list-group-item.card1
+					i.fa.fa-user
+					span   #{u.name}  
+					if(u.username)
+						a(href='/user/'+u._id).
+							@#{u.username}

@@ -68,7 +68,7 @@ router.post('/adduser',function(req,res){
 	user.save(function(err){
 		if (err) {
 			console.log(err);
-			res.send("Please Go Back and Enter all the fields !!!!!");
+			res.send(err);
 		}else{
 			res.redirect('/login');
 		}
@@ -87,7 +87,10 @@ router.post('/request/:id',function(req,res){
 		notif1.applicant.name=req.user.name;
 		notif1.amount=req.body.amount;
 		notif1.save(function(err){
-			if (err) {throw err;}
+			if (err) {
+				console.log(err.message);
+				res.redirect('back');
+			}
 			else {
 				res.redirect('back');
 			}
