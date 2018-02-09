@@ -27,50 +27,60 @@ block content
 								input.form-control(name="paytm" ,type="radio")
 						br
 						input.button.btn(type='submit' value='Request')
-		.jumbotron
+		.container
 			h2 Notifs
-			ul.list-group.list1
-				each notif in r_notifs
-					li.list-group-item.card1
-						.lh
-							h3 Name : #{notif.applicant.name}
-							h4 Request : <strong>INR #{notif.amount}</strong> 
-							h4.line Subject : #{notif.subject}
-							if user
-								if (user.username==userl.username)
-									if !notif.accept && !notif.reject
-										a.button.btn(href='/user/accept/'+notif._id) Accept
-										a.button.btn(href='/user/reject/'+notif._id) Reject
-									if notif.accept && !notif.done
-										a.button.btn() Complete This Transaction
-									if notif.accept && notif.done
-										a.button.btn() Completed
-									if notif.reject
-										a.button.btn() Rejected
-		if user
-			if (user.username==userl.username)
-				.jumbotron
-					h2 Your Pending Requests
-					ul.list-group.list1
-						each notif in a_notifs
-							if notif.accept && !notif.reject && !notif.done
+			ul.nav.nav-tabs
+				li.active
+					a(data-toggle="tab" href="#req") Requests
+				li
+					a(data-toggle="tab" href="#status") Status
+			.tab-content
+				#req.tab-pane.fade.in.active
+					.jumbotron
+						h2 Requests
+						ul.list-group.list1
+							each notif in r_notifs
 								li.list-group-item.card1
-									h3 Request to : #{notif.recipient.name}
-									h4 Amount : <strong>INR #{notif.amount}</strong>
-									h4 Subject : #{notif.subject}
-									h4.line2(style="background-color:lightgreen;") Accepted
-									a.button.btn(href='/user/accept/done/'+notif._id) Payment Recieved
-							if !notif.accept && notif.reject
-								li.list-group-item.card1
-									h3 Request to : #{notif.recipient.name}
-									h4 Amount : <strong>INR #{notif.amount}</strong>
-									h4 Subject : #{notif.subject}
-									h4.line2(style="background-color:pink;") Rejected
-							if !notif.accept && !notif.reject
-								li.list-group-item.card1
-									h3 Request to : #{notif.recipient.name}
-									h4 Amount : <strong>INR #{notif.amount}</strong>
-									h4 Subject : #{notif.subject}
-									h4.line2(style="background-color:lightblue;") Pending
+									.lh
+										h3 Name : #{notif.applicant.name}
+										h4 Request : <strong>INR #{notif.amount}</strong> 
+										h4.line Subject : #{notif.subject}
+										if user
+											if (user.username==userl.username)
+												if !notif.accept && !notif.reject
+													a.button.btn(href='/user/accept/'+notif._id) Accept
+													a.button.btn(href='/user/reject/'+notif._id) Reject
+												if notif.accept && !notif.done
+													a.button.btn() Complete This Transaction
+												if notif.accept && notif.done
+													a.button.btn() Completed
+												if notif.reject
+													a.button.btn() Rejected
+				#status.tabe-pane.fade
+					if user
+						if (user.username==userl.username)
+							.jumbotron
+								h2 Status
+								ul.list-group.list1
+									each notif in a_notifs
+										if notif.accept && !notif.reject && !notif.done
+											li.list-group-item.card1
+												h3 Request to : #{notif.recipient.name}
+												h4 Amount : <strong>INR #{notif.amount}</strong>
+												h4 Subject : #{notif.subject}
+												h4.line2(style="background-color:lightgreen;") Accepted
+												a.button.btn(href='/user/accept/done/'+notif._id) Payment Recieved
+										if !notif.accept && notif.reject
+											li.list-group-item.card1
+												h3 Request to : #{notif.recipient.name}
+												h4 Amount : <strong>INR #{notif.amount}</strong>
+												h4 Subject : #{notif.subject}
+												h4.line2(style="background-color:pink;") Rejected
+										if !notif.accept && !notif.reject
+											li.list-group-item.card1
+												h3 Request to : #{notif.recipient.name}
+												h4 Amount : <strong>INR #{notif.amount}</strong>
+												h4 Subject : #{notif.subject}
+												h4.line2(style="background-color:lightblue;") Pending
 
 								
