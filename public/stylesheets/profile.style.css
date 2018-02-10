@@ -6,6 +6,7 @@
 	font-size: 30px;
 	line-height: 100px;
 	box-shadow: 4px 5px gray;
+	box-sizing: border-box;
 }
 
 .list1 {

@@ -1,7 +1,7 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  background-image: url("../images/bg2.jpg");
+  background-image: url("../images/dark.png");
+  background-size: cover;
 }
 
 a {
@@ -20,3 +20,7 @@ footer {
 	padding-left: 50px;
 }
 
+.jumbotron {
+	background-color: lightgray;
+	opacity: 0.7;
+}
