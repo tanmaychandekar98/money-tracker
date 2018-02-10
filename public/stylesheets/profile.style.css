@@ -1,11 +1,11 @@
 .card1 {
 	height: 250px;
 	width: 350px;
+	min-width: 250px;
 	margin: 15px;
 	font-size: 30px;
 	line-height: 100px;
 	box-shadow: 4px 5px gray;
-
 }
 
 .list1 {
@@ -35,4 +35,13 @@
 	text-align: center;
 	padding: 20px;
 	border-radius: 10px;
+}
+
+.details{
+	display: flex;
+}
+
+.details i{
+	font-size: 260px;
+	margin-right: 20px;
 }
